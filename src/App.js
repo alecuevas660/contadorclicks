@@ -1,24 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import Boton from './componentes/Boton';
+import Contador from './componentes/Contador';
+import { useState } from 'react';
 
+//import milogo from './img/logo.png'
 function App() {
+  const [clics, setNumClics] =useState(0)
+
+
+  const manejarClic = () => {
+    setNumClics(clics + 1);
+  }
+
+  const reiniciarContador = () => {
+    setNumClics(0);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className='mi-logo'>
+        <h1 className='logo'>Contador de Clicks</h1>
+      </div>
+
+      <div className='contenedor'>
+      <Contador 
+       clics={ clics }
+      />
+
+      <Boton 
+          texto='Click'
+          esBotonDeClic={true}
+          manejarClic={manejarClic} />
+        <Boton 
+          texto="reiniciar"
+          esBotonDeClic={true}
+          manejarClic={reiniciarContador} />
+
+      </div>
+      
     </div>
+
+
   );
 }
 
